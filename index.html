@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>MY‑AI Local Bazar</title>
   <style>
-    /* --- Your existing styles (keep them as they are) --- */
     *{margin:0;padding:0;box-sizing:border-box}
     body{background:#0a0a0a;font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;padding:20px 16px 40px;color:#e0e0e0}
     .container{max-width:900px;margin:0 auto}
@@ -14,6 +13,8 @@
     .header h1{font-size:1.8rem;font-weight:300;letter-spacing:2px;color:#c0c0c0}
     .header h1 small{font-size:.9rem;color:#888;letter-spacing:1px}
     .header .sub{color:#666;font-size:.85rem;margin-top:4px}
+    .location-banner{background:#1a1a1a;border-radius:12px;padding:12px 16px;margin-bottom:20px;border:1px solid #333;text-align:center;color:#888;font-size:.85rem}
+    .location-banner strong{color:#c0c0c0}
     .filter-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:20px}
     .filter-bar button{background:#1a1a1a;border:1px solid #333;border-radius:40px;padding:6px 16px;color:#aaa;font-size:.8rem;cursor:pointer;transition:.2s}
     .filter-bar button:hover{background:#333;color:#fff}
@@ -30,86 +31,22 @@
     .signboard-card .badge{display:inline-block;background:#c0c0c0;color:#0a0a0a;font-size:.6rem;font-weight:700;padding:2px 10px;border-radius:20px;margin-top:4px}
     .signboard-card .btn{display:inline-block;background:#c0c0c0;color:#0a0a0a;padding:6px 20px;border-radius:40px;text-decoration:none;font-weight:600;font-size:.75rem;margin-top:10px;transition:.2s}
     .signboard-card .btn:hover{background:#d8d8d8}
-    
-    /* --- NEW: Advertisement Section Styles --- */
-    .advertise-section {
-      background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-      border: 1px solid #c0c0c0;
-      border-radius: 20px;
-      padding: 24px 20px;
-      margin: 30px 0 20px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(192, 192, 192, 0.05);
-    }
-    .advertise-section .title {
-      color: #c0c0c0;
-      font-size: 1.4rem;
-      font-weight: 300;
-      letter-spacing: 1px;
-      margin-bottom: 6px;
-    }
-    .advertise-section .subtitle {
-      color: #888;
-      font-size: .9rem;
-      margin-bottom: 16px;
-    }
-    .price-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px 20px;
-      margin: 12px 0;
-    }
-    .price-item {
-      background: #0a0a0a;
-      padding: 6px 14px;
-      border-radius: 40px;
-      border: 1px solid #333;
-      font-size: .85rem;
-    }
-    .price-item .currency {
-      color: #888;
-    }
-    .price-item .amount {
-      color: #fff;
-      font-weight: 500;
-      margin: 0 4px;
-    }
-    .price-item .original {
-      color: #666;
-      text-decoration: line-through;
-      font-size: .7rem;
-      margin-right: 4px;
-    }
-    .discount-badge {
-      display: inline-block;
-      background: #c0c0c0;
-      color: #0a0a0a;
-      font-weight: 700;
-      font-size: .75rem;
-      padding: 2px 14px;
-      border-radius: 40px;
-      letter-spacing: 0.5px;
-      margin: 4px 0 12px;
-      text-transform: uppercase;
-    }
-    .cta-button {
-      display: inline-block;
-      background: #c0c0c0;
-      color: #0a0a0a;
-      padding: 10px 32px;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: .9rem;
-      transition: .2s;
-      margin-top: 8px;
-    }
-    .cta-button:hover {
-      background: #d8d8d8;
-      transform: scale(1.02);
-    }
-    
+
+    /* --- Advertisement Section with Monthly Pricing --- */
+    .advertise-section{background:linear-gradient(145deg,#1a1a1a,#0f0f0f);border:1px solid #c0c0c0;border-radius:20px;padding:24px 20px;margin:30px 0 20px;text-align:center;box-shadow:0 4px 20px rgba(192,192,192,0.05)}
+    .advertise-section .title{color:#c0c0c0;font-size:1.4rem;font-weight:300;letter-spacing:1px;margin-bottom:6px}
+    .advertise-section .subtitle{color:#888;font-size:.9rem;margin-bottom:16px}
+    .price-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 20px;margin:12px 0}
+    .price-item{background:#0a0a0a;padding:6px 14px;border-radius:40px;border:1px solid #333;font-size:.85rem}
+    .price-item .currency{color:#888}
+    .price-item .amount{color:#fff;font-weight:500;margin:0 4px}
+    .price-item .original{color:#666;text-decoration:line-through;font-size:.7rem;margin-right:4px}
+    .discount-badge{display:inline-block;background:#c0c0c0;color:#0a0a0a;font-weight:700;font-size:.75rem;padding:2px 14px;border-radius:40px;letter-spacing:.5px;margin:4px 0 12px;text-transform:uppercase}
+    .cta-button{display:inline-block;background:#c0c0c0;color:#0a0a0a;padding:10px 32px;border-radius:40px;text-decoration:none;font-weight:600;font-size:.9rem;transition:.2s;margin-top:8px}
+    .cta-button:hover{background:#d8d8d8;transform:scale(1.02)}
+    .monthly-note{color:#666;font-size:.7rem;margin-top:10px}
+    .monthly-note strong{color:#c0c0c0}
+
     .footer{text-align:center;color:#555;font-size:.7rem;margin-top:30px;padding-top:16px;border-top:1px solid #1a1a1a}
     .footer a{color:#888;text-decoration:none}
     .footer a:hover{color:#c0c0c0}
@@ -118,14 +55,18 @@
 </head>
 <body>
 <div class="container">
-  <!-- ===== HEADER ===== -->
   <div class="header">
     <span class="eye-icon">🛍️</span>
     <h1>MY‑AI Local Bazar <small>— Signboard Directory</small></h1>
-    <div class="sub">Click any signboard to learn more or visit the shop</div>
+    <div class="sub">Discover local businesses near you</div>
   </div>
 
-  <!-- ===== NEW: ADVERTISE SECTION ===== -->
+  <!-- Geo Location Banner -->
+  <div class="location-banner" id="locationBanner">
+    📍 Detecting your location...
+  </div>
+
+  <!-- Advertise Section with Monthly Pricing -->
   <div class="advertise-section">
     <div class="title">📢 Advertise Your Business Here</div>
     <div class="subtitle">Get a premium signboard and reach local customers</div>
@@ -137,41 +78,46 @@
         <span class="currency">USD</span>
         <span class="original">$1.00</span>
         <span class="amount">$0.50</span>
+        <span style="color:#555;font-size:.65rem;margin-left:4px;">/month</span>
       </div>
       <div class="price-item">
         <span class="currency">BDT</span>
         <span class="original">120 ৳</span>
         <span class="amount">60 ৳</span>
+        <span style="color:#555;font-size:.65rem;margin-left:4px;">/month</span>
       </div>
       <div class="price-item">
         <span class="currency">THB</span>
         <span class="original">34 ฿</span>
         <span class="amount">17 ฿</span>
+        <span style="color:#555;font-size:.65rem;margin-left:4px;">/month</span>
       </div>
       <div class="price-item">
         <span class="currency">INR</span>
         <span class="original">₹83</span>
         <span class="amount">₹41.50</span>
+        <span style="color:#555;font-size:.65rem;margin-left:4px;">/month</span>
       </div>
     </div>
     
     <a href="#" class="cta-button">Claim Your Signboard Now</a>
-    <div style="color:#666;font-size:.7rem;margin-top:10px;">Limited spots available • First come, first served</div>
+    <div class="monthly-note">🔁 <strong>Monthly subscription</strong> — cancel anytime • First month free for early birds</div>
   </div>
 
-  <!-- ===== FILTER BAR ===== -->
+  <!-- Filter Bar -->
   <div class="filter-bar" id="filterBar">
     <button class="active" data-category="all">🌐 All</button>
+    <button data-category="nearme">📍 Near Me</button>
     <button data-category="restaurant">🍽️ Restaurants</button>
     <button data-category="hotel">🏨 Hotels</button>
     <button data-category="shop">🛒 Shops</button>
     <button data-category="service">🔧 Services</button>
   </div>
 
-  <!-- ===== SIGNBOARD GRID ===== -->
+  <!-- Signboard Grid -->
   <div id="signboardGrid" class="signboard-grid"></div>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- Footer -->
   <div class="footer">
     <p>🛍️ Support local businesses — <a href="#">Add your signboard for $1/month</a></p>
     <p style="margin-top:4px;">© 2026 MY‑AI Bazar — built with ❤️ for local communities</p>
@@ -180,7 +126,7 @@
 
 <script>
 // ============================================================
-// 1. SIGNBOARD DATA (same as before)
+// 1. SIGNBOARD DATA (with location tags)
 // ============================================================
 const signboards = [
   {
@@ -189,9 +135,10 @@ const signboards = [
     category: "restaurant",
     desc: "Authentic Bangladeshi cuisine",
     icon: "🍽️",
-    color: "#c0a050",
     file: "signboards/dhaka-spice.html",
-    location: "Dhaka",
+    location: "Dhaka, Bangladesh",
+    country: "Bangladesh",
+    city: "Dhaka",
     rating: 4.8,
     badge: "Local Favorite"
   },
@@ -201,9 +148,10 @@ const signboards = [
     category: "hotel",
     desc: "Luxury stay in Dhaka",
     icon: "🏨",
-    color: "#4a8ccf",
     file: "signboards/grand-palace.html",
-    location: "Dhaka",
+    location: "Dhaka, Bangladesh",
+    country: "Bangladesh",
+    city: "Dhaka",
     rating: 4.5,
     badge: "Premium"
   },
@@ -213,9 +161,10 @@ const signboards = [
     category: "shop",
     desc: "Gadgets & accessories",
     icon: "🛒",
-    color: "#7cb342",
     file: "signboards/tech-hub.html",
-    location: "Dhaka",
+    location: "Dhaka, Bangladesh",
+    country: "Bangladesh",
+    city: "Dhaka",
     rating: 4.3,
     badge: null
   },
@@ -225,9 +174,10 @@ const signboards = [
     category: "restaurant",
     desc: "Fresh coffee & pastries",
     icon: "☕",
-    color: "#d4a373",
     file: "signboards/cafe-bliss.html",
-    location: "Dhaka",
+    location: "Dhaka, Bangladesh",
+    country: "Bangladesh",
+    city: "Dhaka",
     rating: 4.7,
     badge: "New"
   },
@@ -237,9 +187,10 @@ const signboards = [
     category: "service",
     desc: "Same-day repairs",
     icon: "🔧",
-    color: "#e67e22",
     file: "signboards/quickfix.html",
-    location: "Dhaka",
+    location: "Dhaka, Bangladesh",
+    country: "Bangladesh",
+    city: "Dhaka",
     rating: 4.0,
     badge: null
   },
@@ -249,22 +200,129 @@ const signboards = [
     category: "hotel",
     desc: "Eco-friendly stay",
     icon: "🌿",
-    color: "#2e7d32",
     file: "signboards/green-leaf.html",
-    location: "Dhaka",
+    location: "Dhaka, Bangladesh",
+    country: "Bangladesh",
+    city: "Dhaka",
     rating: 4.2,
     badge: "Eco-Friendly"
+  },
+  // ----- International test entries -----
+  {
+    id: 7,
+    name: "Bangkok Street Food",
+    category: "restaurant",
+    desc: "Authentic Thai street food",
+    icon: "🍜",
+    file: "signboards/bangkok-street.html",
+    location: "Bangkok, Thailand",
+    country: "Thailand",
+    city: "Bangkok",
+    rating: 4.9,
+    badge: "🔥 Popular"
+  },
+  {
+    id: 8,
+    name: "Mumbai Spice Market",
+    category: "shop",
+    desc: "Spices and Indian ingredients",
+    icon: "🌶️",
+    file: "signboards/mumbai-spice.html",
+    location: "Mumbai, India",
+    country: "India",
+    city: "Mumbai",
+    rating: 4.6,
+    badge: "Local Gem"
+  },
+  {
+    id: 9,
+    name: "Shanghai Tech Hub",
+    category: "shop",
+    desc: "Electronics and gadgets",
+    icon: "💻",
+    file: "signboards/shanghai-tech.html",
+    location: "Shanghai, China",
+    country: "China",
+    city: "Shanghai",
+    rating: 4.4,
+    badge: "Trusted"
   }
 ];
 
 // ============================================================
-// 2. RENDER FUNCTION
+// 2. GEO-LOCATION DETECTION
+// ============================================================
+let userCity = 'Dhaka';
+let userCountry = 'Bangladesh';
+
+function detectLocation() {
+  const banner = document.getElementById('locationBanner');
+  
+  // Try browser geolocation first
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
+        fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`)
+          .then(res => res.json())
+          .then(data => {
+            userCity = data.city || data.locality || 'Unknown';
+            userCountry = data.countryName || 'Unknown';
+            localStorage.setItem('userCity', userCity);
+            localStorage.setItem('userCountry', userCountry);
+            banner.innerHTML = `📍 Showing businesses near <strong>${userCity}, ${userCountry}</strong>`;
+            renderBazar('all');
+          })
+          .catch(() => fallbackLocation());
+      },
+      () => fallbackLocation()
+    );
+  } else {
+    fallbackLocation();
+  }
+}
+
+function fallbackLocation() {
+  fetch('https://ipapi.co/json/')
+    .then(res => res.json())
+    .then(data => {
+      userCity = data.city || 'Unknown';
+      userCountry = data.country_name || 'Unknown';
+      localStorage.setItem('userCity', userCity);
+      localStorage.setItem('userCountry', userCountry);
+      document.getElementById('locationBanner').innerHTML = `📍 Showing businesses near <strong>${userCity}, ${userCountry}</strong>`;
+      renderBazar('all');
+    })
+    .catch(() => {
+      // Final fallback
+      userCity = localStorage.getItem('userCity') || 'Dhaka';
+      userCountry = localStorage.getItem('userCountry') || 'Bangladesh';
+      document.getElementById('locationBanner').innerHTML = `📍 Showing businesses near <strong>${userCity}, ${userCountry}</strong>`;
+      renderBazar('all');
+    });
+}
+
+// ============================================================
+// 3. RENDER FUNCTIONS
 // ============================================================
 function renderBazar(category = 'all') {
   const grid = document.getElementById('signboardGrid');
-  const filtered = category === 'all' 
-    ? signboards 
-    : signboards.filter(b => b.category === category);
+  let filtered = [];
+
+  if (category === 'all') {
+    filtered = signboards;
+  } else if (category === 'nearme') {
+    // Filter by user's city or country
+    filtered = signboards.filter(b => 
+      b.city.toLowerCase().includes(userCity.toLowerCase()) ||
+      b.country.toLowerCase().includes(userCountry.toLowerCase())
+    );
+    if (filtered.length === 0) {
+      filtered = signboards; // fallback to all if nothing local
+    }
+  } else {
+    filtered = signboards.filter(b => b.category === category);
+  }
 
   if (filtered.length === 0) {
     grid.innerHTML = `<div class="empty-state">🌿 No signboards in this category yet. Check back soon!</div>`;
@@ -290,7 +348,7 @@ function renderBazar(category = 'all') {
 }
 
 // ============================================================
-// 3. FILTER LOGIC
+// 4. FILTER LOGIC
 // ============================================================
 document.getElementById('filterBar').addEventListener('click', (e) => {
   if (e.target.tagName === 'BUTTON') {
@@ -301,9 +359,9 @@ document.getElementById('filterBar').addEventListener('click', (e) => {
 });
 
 // ============================================================
-// 4. INIT
+// 5. INIT
 // ============================================================
-renderBazar('all');
+detectLocation();
 </script>
 </body>
 </html>
