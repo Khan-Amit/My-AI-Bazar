@@ -1,0 +1,11 @@
+it's a part off Mardukh ®proje6
+all right reserved to
+seliim Ahmed 
+amit.khanna.1082@gmail.com 
+any unauthorized use of
+codes structure or concept is subject to 
+leagel and criminal action 
+without written permission from 
+Seliim Ahmed 
+email amit.khanna.1082@gmail.com 
+thanks
