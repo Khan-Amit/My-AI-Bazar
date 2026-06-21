@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>MY‑AI Bazar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MY‑AI Local Bazar</title>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{background:#0a0a0a;font-family:-apple-system,'Segoe UI',Roboto,system-ui,sans-serif;padding:20px 16px 40px;color:#e0e0e0}
@@ -11,35 +11,36 @@
     .header{text-align:center;margin-bottom:30px}
     .header .eye-icon{font-size:2.8rem;display:block;margin-bottom:4px}
     .header h1{font-size:1.8rem;font-weight:300;letter-spacing:2px;color:#c0c0c0}
-    .header h1 small{font-size:0.9rem;color:#888;letter-spacing:1px}
+    .header h1 small{font-size:.9rem;color:#888;letter-spacing:1px}
     .header .sub{color:#666;font-size:.85rem;margin-top:4px}
-    .banner-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0}
-    .banner-card{background:#1a1a1a;border-radius:12px;overflow:hidden;border:1px solid #333;transition:all .2s;cursor:pointer}
-    .banner-card:hover{border-color:#c0c0c0;transform:translateY(-4px)}
-    .banner-card img{width:100%;height:160px;object-fit:cover;background:#222}
-    .banner-card .info{padding:16px}
-    .banner-card .category{color:#888;font-size:.7rem;text-transform:uppercase;letter-spacing:.5px}
-    .banner-card .name{color:#c0c0c0;font-weight:500;font-size:1.1rem;margin:4px 0}
-    .banner-card .desc{color:#666;font-size:.85rem;margin:4px 0}
-    .banner-card .location{color:#555;font-size:.7rem;margin-top:6px}
-    .banner-card .rating{color:#f5c842;font-size:.8rem}
-    .footer{text-align:center;color:#555;font-size:.7rem;margin-top:30px;padding-top:16px;border-top:1px solid #1a1a1a}
-    .footer a{color:#888;text-decoration:none}
-    .footer a:hover{color:#c0c0c0}
     .filter-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:20px}
     .filter-bar button{background:#1a1a1a;border:1px solid #333;border-radius:40px;padding:6px 16px;color:#aaa;font-size:.8rem;cursor:pointer;transition:.2s}
     .filter-bar button:hover{background:#333;color:#fff}
     .filter-bar button.active{background:#c0c0c0;color:#0a0a0a;border-color:#c0c0c0}
+    .signboard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin:20px 0}
+    .signboard-card{background:#1a1a1a;border-radius:16px;padding:16px;border:2px solid #333;transition:all .2s;cursor:pointer;text-align:center}
+    .signboard-card:hover{border-color:#c0c0c0;transform:translateY(-4px)}
+    .signboard-card .icon{font-size:3rem;display:block;margin-bottom:4px}
+    .signboard-card .category{color:#888;font-size:.65rem;text-transform:uppercase;letter-spacing:.5px}
+    .signboard-card .name{color:#c0c0c0;font-weight:500;font-size:1.1rem;margin:4px 0}
+    .signboard-card .desc{color:#666;font-size:.8rem;margin:4px 0}
+    .signboard-card .location{color:#555;font-size:.7rem}
+    .signboard-card .rating{color:#f5c842;font-size:.8rem;margin:4px 0}
+    .signboard-card .badge{display:inline-block;background:#c0c0c0;color:#0a0a0a;font-size:.6rem;font-weight:700;padding:2px 10px;border-radius:20px;margin-top:4px}
+    .signboard-card .btn{display:inline-block;background:#c0c0c0;color:#0a0a0a;padding:6px 20px;border-radius:40px;text-decoration:none;font-weight:600;font-size:.75rem;margin-top:10px;transition:.2s}
+    .signboard-card .btn:hover{background:#d8d8d8}
+    .footer{text-align:center;color:#555;font-size:.7rem;margin-top:30px;padding-top:16px;border-top:1px solid #1a1a1a}
+    .footer a{color:#888;text-decoration:none}
+    .footer a:hover{color:#c0c0c0}
     .empty-state{text-align:center;color:#666;padding:40px 0}
-    .badge{display:inline-block;background:#c0c0c0;color:#0a0a0a;font-size:.6rem;font-weight:700;padding:2px 10px;border-radius:20px;margin-top:6px}
   </style>
 </head>
 <body>
 <div class="container">
   <div class="header">
     <span class="eye-icon">🛍️</span>
-    <h1>MY‑AI Local Bazar <small>— Support Local</small></h1>
-    <div class="sub">Discover shops, restaurants, hotels & services near you</div>
+    <h1>MY‑AI Local Bazar <small>— Signboard Directory</small></h1>
+    <div class="sub">Click any signboard to learn more or visit the shop</div>
   </div>
 
   <!-- Filter Bar -->
@@ -51,118 +52,121 @@
     <button data-category="service">🔧 Services</button>
   </div>
 
-  <!-- Banners Grid -->
-  <div id="bannerGrid" class="banner-grid"></div>
+  <!-- Signboard Grid -->
+  <div id="signboardGrid" class="signboard-grid"></div>
 
   <!-- Footer -->
   <div class="footer">
-    <p>🛍️ Support local businesses — <a href="#">Add your shop for $1/month</a></p>
+    <p>🛍️ Support local businesses — <a href="#">Add your signboard for $1/month</a></p>
     <p style="margin-top:4px;">© 2026 MY‑AI Bazar — built with ❤️ for local communities</p>
   </div>
 </div>
 
 <script>
 // ============================================================
-// 1. DATA – Add your businesses here
+// 1. SIGNBOARD DATA – Each entry points to an HTML file
 // ============================================================
-const businesses = [
+const signboards = [
   {
     id: 1,
     name: "Dhaka Spice",
     category: "restaurant",
-    desc: "Authentic Bangladeshi cuisine. Try our biryani!",
-    image: "https://placehold.co/600x400/1a1a1a/c0c0c0?text=🍽️+Dhaka+Spice",
-    url: "https://example.com/dhaka-spice",
-    location: "Dhaka, Bangladesh",
-    rating: 4.8
+    desc: "Authentic Bangladeshi cuisine",
+    icon: "🍽️",
+    color: "#c0a050",
+    file: "signboards/dhaka-spice.html",
+    location: "Dhaka",
+    rating: 4.8,
+    badge: "Local Favorite"
   },
   {
     id: 2,
     name: "Grand Palace Hotel",
     category: "hotel",
-    desc: "Luxury stay in the heart of Dhaka. Free Wi-Fi & breakfast.",
-    image: "https://placehold.co/600x400/1a1a1a/c0c0c0?text=🏨+Grand+Palace",
-    url: "https://example.com/grand-palace",
-    location: "Dhaka, Bangladesh",
-    rating: 4.5
+    desc: "Luxury stay in Dhaka",
+    icon: "🏨",
+    color: "#4a8ccf",
+    file: "signboards/grand-palace.html",
+    location: "Dhaka",
+    rating: 4.5,
+    badge: "Premium"
   },
   {
     id: 3,
-    name: "Tech Hub Bangladesh",
+    name: "Tech Hub",
     category: "shop",
-    desc: "Gadgets, laptops, and accessories. Best prices in town.",
-    image: "https://placehold.co/600x400/1a1a1a/c0c0c0?text=🛒+Tech+Hub",
-    url: "https://example.com/tech-hub",
-    location: "Dhaka, Bangladesh",
-    rating: 4.3
+    desc: "Gadgets & accessories",
+    icon: "🛒",
+    color: "#7cb342",
+    file: "signboards/tech-hub.html",
+    location: "Dhaka",
+    rating: 4.3,
+    badge: null
   },
   {
     id: 4,
-    name: "QuickFix Services",
-    category: "service",
-    desc: "Plumbing, electrical, AC repair – same-day service.",
-    image: "https://placehold.co/600x400/1a1a1a/c0c0c0?text=🔧+QuickFix",
-    url: "https://example.com/quickfix",
-    location: "Dhaka, Bangladesh",
-    rating: 4.0
+    name: "Cafe Bliss",
+    category: "restaurant",
+    desc: "Fresh coffee & pastries",
+    icon: "☕",
+    color: "#d4a373",
+    file: "signboards/cafe-bliss.html",
+    location: "Dhaka",
+    rating: 4.7,
+    badge: "New"
   },
   {
     id: 5,
-    name: "Cafe Bliss",
-    category: "restaurant",
-    desc: "Cozy cafe with fresh coffee and baked goods.",
-    image: "https://placehold.co/600x400/1a1a1a/c0c0c0?text=☕+Cafe+Bliss",
-    url: "https://example.com/cafe-bliss",
-    location: "Dhaka, Bangladesh",
-    rating: 4.7
+    name: "QuickFix Services",
+    category: "service",
+    desc: "Same-day repairs",
+    icon: "🔧",
+    color: "#e67e22",
+    file: "signboards/quickfix.html",
+    location: "Dhaka",
+    rating: 4.0,
+    badge: null
   },
   {
     id: 6,
     name: "Green Leaf Hotel",
     category: "hotel",
-    desc: "Eco-friendly hotel with garden views.",
-    image: "https://placehold.co/600x400/1a1a1a/c0c0c0?text=🌿+Green+Leaf",
-    url: "https://example.com/green-leaf",
-    location: "Dhaka, Bangladesh",
-    rating: 4.2
+    desc: "Eco-friendly stay",
+    icon: "🌿",
+    color: "#2e7d32",
+    file: "signboards/green-leaf.html",
+    location: "Dhaka",
+    rating: 4.2,
+    badge: "Eco-Friendly"
   }
 ];
 
 // ============================================================
-// 2. RENDER FUNCTION
+// 2. RENDER FUNCTION – Opens signboard in overlay
 // ============================================================
 function renderBazar(category = 'all') {
-  const grid = document.getElementById('bannerGrid');
+  const grid = document.getElementById('signboardGrid');
   const filtered = category === 'all' 
-    ? businesses 
-    : businesses.filter(b => b.category === category);
+    ? signboards 
+    : signboards.filter(b => b.category === category);
 
   if (filtered.length === 0) {
-    grid.innerHTML = `<div class="empty-state">🌿 No businesses in this category yet. Check back soon!</div>`;
+    grid.innerHTML = `<div class="empty-state">🌿 No signboards in this category yet. Check back soon!</div>`;
     return;
   }
 
-  const categoryEmojis = {
-    restaurant: '🍽️',
-    hotel: '🏨',
-    shop: '🛒',
-    service: '🔧'
-  };
-
   let html = '';
   filtered.forEach(b => {
-    const ratingStars = '⭐'.repeat(Math.floor(b.rating || 0)) + (b.rating % 1 >= 0.5 ? '½' : '');
     html += `
-      <div class="banner-card" onclick="window.open('${b.url}','_blank')">
-        <img src="${b.image}" alt="${b.name}" loading="lazy" onerror="this.src='https://placehold.co/600x400/1a1a1a/666?text=${encodeURIComponent(b.name.substring(0,3))}'">
-        <div class="info">
-          <div class="category">${categoryEmojis[b.category] || '📌'} ${b.category}</div>
-          <div class="name">${b.name}</div>
-          <div class="desc">${b.desc}</div>
-          <div class="location">📍 ${b.location}</div>
-          ${b.rating ? `<div class="rating">${ratingStars} ${b.rating}</div>` : ''}
-          ${b.badge ? `<div class="badge">${b.badge}</div>` : ''}
-        </div>
+      <div class="signboard-card" onclick="openSignboard('${b.file}', '${b.name}')">
+        <span class="icon">${b.icon}</span>
+        <div class="category">${b.category}</div>
+        <div class="name">${b.name}</div>
+        <div class="desc">${b.desc}</div>
+        <div class="location">📍 ${b.location}</div>
+        ${b.rating ? `<div class="rating">${'⭐'.repeat(Math.floor(b.rating))} ${b.rating}</div>` : ''}
+        ${b.badge ? `<div class="badge">${b.badge}</div>` : ''}
+        <div class="btn" onclick="event.stopPropagation(); window.open('${b.file}','_blank')">View Signboard</div>
       </div>
     `;
   });
@@ -170,7 +174,15 @@ function renderBazar(category = 'all') {
 }
 
 // ============================================================
-// 3. FILTER LOGIC
+// 3. OPEN SIGNBOARD – In overlay or new tab
+// ============================================================
+function openSignboard(file, name) {
+  // Open in a new tab (or use an iframe overlay)
+  window.open(file, '_blank');
+}
+
+// ============================================================
+// 4. FILTER LOGIC
 // ============================================================
 document.getElementById('filterBar').addEventListener('click', (e) => {
   if (e.target.tagName === 'BUTTON') {
@@ -181,7 +193,7 @@ document.getElementById('filterBar').addEventListener('click', (e) => {
 });
 
 // ============================================================
-// 4. INIT
+// 5. INIT
 // ============================================================
 renderBazar('all');
 </script>
